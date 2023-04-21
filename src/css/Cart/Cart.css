@@ -1,0 +1,50 @@
+.cart {
+  width: 60%;
+  margin: auto;
+}
+.cart .cart-title {
+  margin-bottom: 20px;
+}
+.cart .cart-title h3 {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.cart .box {
+  display: flex;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 3px #c0c0c0;
+  padding: 15px;
+}
+.cart .box img {
+  width: 60px;
+}
+.cart .box .cart-info {
+  flex: 1;
+}
+.cart .box .cart-info span {
+  width: 100%;
+  display: block;
+}
+.cart .box button {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.cart .total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.cart .total button {
+  color: #fff;
+  background-color: #2a5ea5;
+  border: none;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 5px;
+}

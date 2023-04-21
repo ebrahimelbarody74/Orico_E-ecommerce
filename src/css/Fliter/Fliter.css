@@ -1,0 +1,42 @@
+.fliter {
+  width: 30%;
+  background-color: #fff;
+  border: 1px solid #c0c0c0;
+  margin-top: 30px;
+}
+.fliter h2 {
+  background-color: #2a5ea5;
+  color: #fff;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+.fliter .row {
+  padding: 0 20px;
+}
+.fliter .row p {
+  margin-bottom: 20px;
+}
+.fliter .row .filter-size {
+  margin-bottom: 20px;
+}
+.fliter .row .filter-size span {
+  display: block;
+}
+.fliter .row .filter-size select {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+.fliter .row .filter-order {
+  margin-bottom: 20px;
+}
+.fliter .row .filter-order span {
+  display: block;
+}
+.fliter .row .filter-order select {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #eee;
+  padding: 10px;
+}
