@@ -15,7 +15,7 @@ function Register() {
   const dispatch = useDispatch();
   const handelSubmit = async (e) => {
     e.preventDefault();
-    
+
     fetch("/api/userdb", {
       method: "POST",
       headers: {
@@ -28,7 +28,7 @@ function Register() {
         if (data) {
           if (data.status === "true") {
             navigator("/");
-            localStorage.setItem("isAdman", JSON.stringify(true));
+            localStorage.setItem("isAdman", JSON.stringify(data));
           }
         }
       });

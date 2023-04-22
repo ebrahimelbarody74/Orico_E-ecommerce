@@ -13,9 +13,10 @@ import { useTranslation } from "react-i18next";
 import { removeProduct } from "../../rtk/slices/cartSlice";
 import { productType } from "../../assets/data/dummyData.jsx";
 import { filterProduct } from "../../rtk/slices/productSlice";
+import { logout } from "../../rtk/slices/authSlice";
 
 function Navbar() {
-  const isAdman = JSON.parse(localStorage.getItem("isAdman"));
+  const isAdman = useSelector((state) => state.auth.isAdmin);
 
   const [close, setClose] = useState(false);
   const [openLang, setOpenLang] = useState(false);
@@ -180,12 +181,7 @@ function Navbar() {
                     <li>Profile</li>
                     <li>Orders</li>
                     <li>
-                      <Link
-                        to="/login"
-                        onClick={() =>
-                          localStorage.setItem("isAdman", JSON.stringify(false))
-                        }
-                      >
+                      <Link to="/login" onClick={() => dispatch(logout())}>
                         Logout
                       </Link>
                     </li>

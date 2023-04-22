@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, json } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import FilterProduct from "./pages/FilterProduct/FilterProduct";
@@ -11,20 +11,17 @@ import Products from "./pages/Products/Products";
 import Cart from "./pages/Cart/Cart";
 import { CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-// const override: CSSProperties = {
-//   display: "block",
-//   margin: "0 auto",
-//   borderColor: "red",
-// };
+
 function App() {
   const dark = useSelector((state) => state.slider.dark);
   let [loading, setLoading] = useState(true);
+  const { isAdmin } = useSelector((state) => state.auth);
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (
@@ -42,13 +39,22 @@ function App() {
         </div>
       ) : (
         <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Register />} path="/register" />
-          <Route element={<Login />} path="/login" />
-          <Route element={<FilterProduct />} path={`/filterProduct/:type`} />
           <Route
-            element={<SingleProduct />}
+            path="/"
+            element={isAdmin ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/register"
+            element={isAdmin ? <Navigate to="/" /> : <Register />}
+          />
+          <Route
+            path="/login"
+            element={isAdmin ? <Navigate to="/" /> : <Login />}
+          />
+          <Route path={`/filterProduct/:type`} element={<FilterProduct />} />
+          <Route
             path={`/filterProduct/:type/:id`}
+            element={<SingleProduct />}
           />
           <Route element={<Products />} path={`/products/:num`} />
           <Route element={<Cart />} path={`/cart`} />

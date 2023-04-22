@@ -1,26 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const authSlice = createSlice({
-  name: "authSlice",
-  initialState: [],
+const adminUserSlice = createSlice({
+  name: "adminUser",
+  initialState: {
+    isLoggedIn: false,
+    isAdmin: JSON.parse(localStorage.getItem("isAdmin")) || false,
+    password: null,
+    email: null,
+    token: null,
+  },
   reducers: {
-    register: (state, action) => {
-      try {
-        fetch("/api/userdb", {
-          method: "POST",
-          headers: {
-            "Content-Type": "Application/json",
-          },
-          body: JSON.stringify(action.payload),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          });
-      } catch (err) {}
+    login: (state, action) => {
+      state.isLoggedIn = true;
+      state.isAdmin = true;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
+      state.token = action.payload.token;
+      localStorage.setItem("isAdmin", JSON.stringify(state.isAdmin));
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.isAdmin = false;
+      state.password = null;
+      state.email = null;
+      state.token = null;
     },
   },
 });
 
-export const { register } = authSlice.actions;
-export default authSlice.reducer;
+export const { login, logout } = adminUserSlice.actions;
+
+export default adminUserSlice.reducer;

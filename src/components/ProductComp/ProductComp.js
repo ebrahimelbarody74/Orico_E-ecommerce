@@ -42,7 +42,7 @@ function ProductComp() {
           <div className="row">
             {product &&
               product.map((p, index) => (
-                <div className="box" key={p.id}>
+                <div className="box" key={index}>
                   <a href="#">
                     <img src={p.img} />
                   </a>

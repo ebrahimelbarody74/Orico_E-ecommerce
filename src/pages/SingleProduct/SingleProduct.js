@@ -5,7 +5,6 @@ import "./SingleProduct.scss";
 import Navbar from "../../components/Navbar/Navbar";
 import { addToCart } from "../../rtk/slices/cartSlice";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import Swal from "sweetalert2";
 import swal from "sweetalert";
 
 function SingleProduct() {

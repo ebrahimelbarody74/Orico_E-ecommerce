@@ -33,6 +33,7 @@ function Slider() {
       <div className="circle">
         {sliderData.map((s, index) => (
           <span
+            key={index}
             className={index === value && "active"}
             onClick={() => dispatch(handelCircle(index))}
           ></span>

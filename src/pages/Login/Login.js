@@ -4,6 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import img from "../../assets/images/register/karsten-winegeart-4bC1Ef88OYI-unsplash.jpg";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../rtk/slices/authSlice";
+import swal from "sweetalert";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,24 +16,29 @@ function Login() {
 
   const dispatch = useDispatch();
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        data && data.status == "true" ? navigate("/") : setError(data);
-        if (data.status == "true") {
-          console.log(data);
-          localStorage.setItem("isAdman", JSON.stringify(true));
-        }
-      })
-      .catch((err) => {});
+  const handelSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: password }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.status === "true") {
+        dispatch(login(data));
+        navigate("/");
+      } else {
+        return swal({
+          title: data,
+          icon: "warning",
+          dangerMode: true,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
