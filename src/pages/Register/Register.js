@@ -3,20 +3,21 @@ import Navbar from "../../components/Navbar/Navbar";
 import img from "../../assets/images/register/karsten-winegeart-4bC1Ef88OYI-unsplash.jpg";
 import "./Register.scss";
 import { useDispatch } from "react-redux";
-import { register } from "../../rtk/slices/authSlice";
+import { login, register } from "../../rtk/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 function Register() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    fetch("/api/userdb", {
+    fetch("https://server-data-shzb.onrender.com/api/userdb", {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
@@ -25,11 +26,15 @@ function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
-          if (data.status === "true") {
-            navigator("/");
-            localStorage.setItem("isAdman", JSON.stringify(data));
-          }
+        if (data.status === "true") {
+          dispatch(login(data));
+          navigate("/");
+        } else {
+          return swal({
+            title: data,
+            icon: "warning",
+            dangerMode: true,
+          });
         }
       });
   };

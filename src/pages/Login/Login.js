@@ -19,7 +19,7 @@ function Login() {
   const handelSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("https://server-data-shzb.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email, password: password }),

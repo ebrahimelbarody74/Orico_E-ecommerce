@@ -19,7 +19,7 @@ function ProductComp() {
   useEffect(() => {
     // const product = async () => {
     //   await
-    fetch("/api/products")
+    fetch("https://server-data-shzb.onrender.com/api/products")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
