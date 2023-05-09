@@ -17,7 +17,7 @@ function Register() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    fetch("https://server-data-shzb.onrender.com/api/userdb", {
+    fetch("https://server-data-shzb.onrender.com/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
